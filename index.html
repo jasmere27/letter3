@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For You 💌</title>
+  <style>
+    body {
+      background:#fff0f5;
+      font-family: "Georgia", serif;
+      padding:50px;
+      line-height:1.6;
+      color:#4a004e;
+      text-align:center;
+    }
+    h2 {
+      color:#a6005c;
+    }
+
+    /* Envelope container */
+    .envelope-wrapper {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      margin:40px 0;
+    }
+
+    /* Envelope design */
+    .envelope {
+      position: relative;
+      width: 240px;
+      height: 160px;
+      background: #ffb6c1;
+      border: 2px solid #ff69b4;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.6s ease;
+    }
+
+    /* Envelope flap */
+    .envelope:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 120px solid transparent;
+      border-right: 120px solid transparent;
+      border-bottom: 80px solid #ff69b4;
+      transition: transform 0.6s ease;
+      transform-origin: top;
+      z-index: 2;
+    }
+
+    /* Open animation */
+    .envelope.open:before {
+      transform: rotateX(180deg);
+    }
+
+    /* Instruction text */
+    .instruction {
+      margin-top:10px;
+      font-size:1.1rem;
+      color:#a6005c;
+      font-style:italic;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity:1; }
+      50% { opacity:0.5; }
+      100% { opacity:1; }
+    }
+
+    /* Letter content */
+    #letter {
+      display:none;
+      border:2px solid #ffb6c1;
+      padding:20px;
+      border-radius:12px;
+      background:#fff;
+      max-width:600px;
+      margin:20px auto;
+      font-size:1.2rem;
+      white-space:pre-wrap;
+      text-align:left;
+    }
+  </style>
+</head>
+<body>
+  <h2>💌 For my Favorite Girl! 💌</h2>
+
+  <div class="envelope-wrapper">
+    <div class="envelope" id="envelope"></div>
+    <div class="instruction">Click to open me 💌</div>
+  </div>
+
+  <div id="letter"></div>
+
+<script>
+const text = `Mea,
+
+I know there are times you look at yourself and only see the hard parts.
+The scars, the pain, the moods that shift, the walls you’ve built,
+the ways you’ve had to survive. 
+And I know you sometimes feel judged for the way you cope,
+for the choices you make when it hurts,
+for the things you say or don’t say, do or don’t do.
+
+But please, hear me:  
+None of those things make you unworthy.  
+None of them erase your value or your beauty.  
+They are signs of someone who has been through so much and is still here,
+still standing, still fighting, still trying.  
+That alone is proof of your strength.
+
+There is nothing wrong with you. 
+Nothing about your story makes you unlovable. 
+The things you’ve been through, the things you carry —
+they are not flaws; they are proof of how strong and real you are.
+
+I see the whole of you:
+the mind that’s bright and curious,
+the heart that still feels deeply even when it hurts,
+the soul that craves connection and still reaches out for hugs.
+I see the scars,
+the ways you protect yourself,
+and the small, quiet ways you keep going.
+And I love you for all of it.
+
+You are not broken.
+You are human, beautiful and resilient.
+You are more than the pain, more than the struggles,
+more than the moments you’ve been misunderstood.
+You are worthy of love exactly as you are, right now.
+
+I love everything about you —
+your laugh, your smile, your stubbornness, your kindness,
+even the parts you try to hide.
+All of it belongs. All of it is you. All of it is loved.
+
+Please remember this:  
+You are not alone.  
+You are loved.  
+You are enough.  
+
+And no matter how heavy it feels, I will still be here,
+believing in you, proud of you, and loving you completely.
+
+With all my heart,
+— Your IT Boy(na hindi hiram :p) ❤️`;
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("letter").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
+}
+
+document.getElementById("envelope").addEventListener("click", function() {
+  this.classList.add("open");
+  setTimeout(() => {
+    document.querySelector(".envelope-wrapper").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+    typeWriter();
+  }, 800); // wait for flap animation
+});
+</script>
+</body>
+</html>
